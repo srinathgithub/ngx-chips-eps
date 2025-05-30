@@ -1,6 +1,6 @@
 {
   "name": "ngx-chips",
-  "version": "3.0.0",
+  "version": "1.0.0",
   "description": "Tag Input component for Angular",
   "scripts": {
     "release": "npm run build && npm publish dist",
@@ -55,9 +55,9 @@
   "peerDependencies": {
     "@angular/animations": ">=10.1.5",
     "@angular/common": ">=10.1.5",
+    "@angular/compiler": ">=10.1.5",
     "@angular/core": ">=10.1.5",
-    "@angular/forms": ">=10.1.5",
-    "@angular/compiler": ">=10.1.5"
+    "@angular/forms": ">=10.1.5"
   },
   "keywords": [
     "angular tag input",
