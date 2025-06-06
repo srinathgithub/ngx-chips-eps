@@ -673,3 +673,8 @@ Contributions are highly welcome! No, there is no guideline on how to do it. Jus
 
 ### Ok - cool stuff. But when will you fix the issue I created?
 Do please read this great post by Micheal Bromley: http://www.michaelbromley.co.uk/blog/529/why-i-havent-fixed-your-issue-yet. No, I don't have babies, but am not 24/7 coding :)
+
+### What changes done
+Angular 13 updates to Angular 16. A new file ng-package.json is created and all dependencies 
+of ngPackage moved here. Also ngPackage dependencies removed from package.json
+

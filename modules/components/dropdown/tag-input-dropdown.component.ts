@@ -8,23 +8,30 @@ import {
   QueryList,
   TemplateRef,
   ViewChild,
-  AfterViewInit
-} from '@angular/core';
+  AfterViewInit,
+} from "@angular/core";
 
 // rx
-import { Observable } from 'rxjs';
-import { filter, first, debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { Observable } from "rxjs";
+import {
+  filter,
+  first,
+  debounceTime,
+  distinctUntilChanged,
+} from "rxjs/operators";
 
-import { Ng2Dropdown, Ng2MenuItem } from 'ng2-material-dropdown';
-import { defaults } from '../../defaults';
-import { TagInputComponent } from '../tag-input/tag-input';
-import {TagModel} from '../../core/tag-model';
+import { Ng2Dropdown, Ng2MenuItem } from "ng2-material-dropdown";
+import { defaults } from "../../defaults";
+import { TagInputComponent } from "../tag-input/tag-input";
+import { TagModel } from "../../core/tag-model";
 
 @Component({
-  selector: 'tag-input-dropdown',
-  templateUrl: './tag-input-dropdown.template.html'
+  selector: "tag-input-dropdown",
+  templateUrl: "./tag-input-dropdown.template.html",
 })
 export class TagInputDropdown implements AfterViewInit {
+  constructor(private readonly injector: Injector) {}
+
   /**
    * @name dropdown
    */
@@ -144,16 +151,14 @@ export class TagInputDropdown implements AfterViewInit {
     }
 
     return items.map((item: TagModel) => {
-      return typeof item === 'string'
+      return typeof item === "string"
         ? {
             [this.displayBy]: item,
-            [this.identifyBy]: item
+            [this.identifyBy]: item,
           }
         : item;
     });
   }
-
-  constructor(private readonly injector: Injector) {}
 
   /**
    * @name ngAfterviewInit
@@ -281,7 +286,7 @@ export class TagInputDropdown implements AfterViewInit {
   /**
    * @name scrollListener
    */
-  @HostListener('window:scroll')
+  @HostListener("window:scroll")
   public scrollListener(): void {
     if (!this.isVisible || !this.dynamicUpdate) {
       return;
@@ -293,7 +298,7 @@ export class TagInputDropdown implements AfterViewInit {
   /**
    * @name onWindowBlur
    */
-  @HostListener('window:blur')
+  @HostListener("window:blur")
   public onWindowBlur(): void {
     this.dropdown.hide();
   }
@@ -303,7 +308,7 @@ export class TagInputDropdown implements AfterViewInit {
    */
   private getFormValue(): string {
     const formValue = this.tagInput.formValue;
-    return formValue ? formValue.toString().trim() : '';
+    return formValue ? formValue.toString().trim() : "";
   }
 
   /**
@@ -328,14 +333,14 @@ export class TagInputDropdown implements AfterViewInit {
    */
   private createTagModel(item: Ng2MenuItem): TagModel {
     const display =
-      typeof item.value === 'string' ? item.value : item.value[this.displayBy];
+      typeof item.value === "string" ? item.value : item.value[this.displayBy];
     const value =
-      typeof item.value === 'string' ? item.value : item.value[this.identifyBy];
+      typeof item.value === "string" ? item.value : item.value[this.identifyBy];
 
     return {
       ...item.value,
       [this.tagInput.displayBy]: display,
-      [this.tagInput.identifyBy]: value
+      [this.tagInput.identifyBy]: value,
     };
   }
 
@@ -353,10 +358,10 @@ export class TagInputDropdown implements AfterViewInit {
     return this.autocompleteItems.filter((item: TagModel) => {
       const hasValue = dupesAllowed
         ? false
-        : this.tagInput.tags.some(tag => {
+        : this.tagInput.tags.some((tag) => {
             const identifyBy = this.tagInput.identifyBy;
             const model =
-              typeof tag.model === 'string' ? tag.model : tag.model[identifyBy];
+              typeof tag.model === "string" ? tag.model : tag.model[identifyBy];
 
             return model === item[this.identifyBy];
           });
@@ -384,11 +389,11 @@ export class TagInputDropdown implements AfterViewInit {
    * @param data
    */
   private populateItems(data: any): TagInputDropdown {
-    this.autocompleteItems = data.map(item => {
-      return typeof item === 'string'
+    this.autocompleteItems = data.map((item) => {
+      return typeof item === "string"
         ? {
             [this.displayBy]: item,
-            [this.identifyBy]: item
+            [this.identifyBy]: item,
           }
         : item;
     });
